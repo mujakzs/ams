@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  pg:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    container_name: pg
+  cloudbeaver:
+    container_name: dbeaver
+    image: dbeaver/cloudbeaver:23.2
+    restart: unless-stopped
+    ports:
+      - "8978:8978"

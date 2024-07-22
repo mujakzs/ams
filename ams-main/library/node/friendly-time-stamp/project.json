@@ -1,0 +1,9 @@
+{
+  "name": "library-node--friendly-time-stamp",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "library/node/friendly-time-stamp/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project library-node--friendly-time-stamp --web",
+  "targets": {}
+}

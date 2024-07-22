@@ -1,0 +1,9 @@
+{
+  "name": "library-next-components-seo",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "library/next/components/seo/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project library-next-components-seo --web",
+  "targets": {}
+}

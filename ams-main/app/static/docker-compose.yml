@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  static:
+    build: .
+    container_name: static
+    ports:
+      - '4000:80'

@@ -1,0 +1,23 @@
+{
+  "name": "static",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "app/static",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f {projectRoot}/docker-compose.yml up -d"
+        ]
+      }
+    },
+    "docker": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["docker build {projectRoot}/ -t static:latest"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,9 @@
+{
+  "name": "library-next-components-pagination",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "library/next/components/pagination/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project library-next-components-pagination --web",
+  "targets": {}
+}

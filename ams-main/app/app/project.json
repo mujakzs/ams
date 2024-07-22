@@ -1,0 +1,33 @@
+{
+  "name": "app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "app/app",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project app --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/app/app",
+        "generateLockfile": true
+      }
+    },
+    "docker": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "mkdir -p docker/tmp/app/",
+          "cp docker/Dockerfile.frontend docker/tmp/app/Dockerfile",
+          "cp docker/.dockerignore docker/tmp/app/",
+          "cp -ra dist/app/app/. docker/tmp/app/",
+          "docker build --no-cache docker/tmp/app/ --tag app:latest --network host",
+          "rm -rf docker/tmp/app/"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

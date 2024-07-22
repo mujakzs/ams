@@ -1,0 +1,84 @@
+{
+  "name": "app-ws",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "app/ws/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/app/ws",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "app/ws/src/main.ts",
+        "tsConfig": "app/ws/tsconfig.app.json",
+        "assets": ["app/ws/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "app-ws:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "app-ws:build:development"
+        },
+        "production": {
+          "buildTarget": "app-ws:build:production"
+        }
+      }
+    },
+    "docker": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "mkdir -p docker/tmp/ws/",
+          "cp docker/Dockerfile.node.backend docker/tmp/ws/Dockerfile",
+          "cp docker/.dockerignore docker/tmp/ws/",
+          "cp -ra dist/app/ws/. docker/tmp/ws/",
+          "docker build --no-cache docker/tmp/ws/ --build-arg=\"PORT=8070\" --tag ws:latest --network host",
+          "rm -rf docker/tmp/ws/"
+        ],
+        "parallel": false
+      }
+    },
+    "docker:windows": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "mkdir docker\\tmp\\ws",
+          "copy docker\\Dockerfile.node.backend docker\\tmp\\ws\\Dockerfile",
+          "copy docker\\.dockerignore docker\\tmp\\ws\\.dockerignore",
+          "xcopy dist\\app\\ws\\* docker\\tmp\\ws\\ /s /e /y",
+          "docker build --no-cache docker\\tmp\\ws\\ --build-arg=\"PORT=8070\" --tag ws:latest --network host",
+          "rd /s /q docker\\tmp\\ws"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

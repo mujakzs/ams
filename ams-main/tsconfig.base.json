@@ -1,0 +1,58 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ams/library/next/components/dashboard": [
+        "library/next/components/dashboard/src/index.ts"
+      ],
+      "@ams/library/next/components/link-group": [
+        "library/next/components/link-group/src/index.ts"
+      ],
+      "@ams/library/next/components/login": [
+        "library/next/components/login/src/index.ts"
+      ],
+      "@ams/library/next/components/modals": [
+        "library/next/components/modals/src/index.ts"
+      ],
+      "@ams/library/next/components/pagination": [
+        "library/next/components/pagination/src/index.ts"
+      ],
+      "@ams/library/next/components/search": [
+        "library/next/components/search/src/index.ts"
+      ],
+      "@ams/library/next/components/seo": [
+        "library/next/components/seo/src/index.ts"
+      ],
+      "@ams/library/next/components/table": [
+        "library/next/components/table/src/index.ts"
+      ],
+      "@ams/library/next/components/theme-toggle": [
+        "library/next/components/theme-toggle/src/index.ts"
+      ],
+      "@ams/library/next/components/toasts": [
+        "library/next/components/toasts/src/index.ts"
+      ],
+      "@ams/library/next/components/user-button": [
+        "library/next/components/user-button/src/index.ts"
+      ],
+      "@ams/library/node//friendly-time-stamp": [
+        "library/node/friendly-time-stamp/src/index.ts"
+      ],
+      "@ams/library/node//types": ["library/node/types/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

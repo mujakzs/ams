@@ -1,0 +1,56 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "app/api",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx-go/nx-go:build",
+      "options": {
+        "main": "{projectRoot}/main.go"
+      }
+    },
+    "serve": {
+      "executor": "@nx-go/nx-go:serve",
+      "options": {
+        "main": "{projectRoot}/main.go",
+        "cmd": "gow"
+      }
+    },
+    "test": {
+      "executor": "@nx-go/nx-go:test"
+    },
+    "lint": {
+      "executor": "@nx-go/nx-go:lint"
+    },
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "go get -u {args.package}"
+      }
+    },
+    "tidy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "go mod tidy"
+      }
+    },
+    "docker": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "mkdir -p docker/tmp/api/",
+          "cp docker/Dockerfile.backend docker/tmp/api/Dockerfile",
+          "cp docker/.dockerignore docker/tmp/api/",
+          "rsync -aP dist/app/api docker/tmp/api/app",
+          "docker build --no-cache docker/tmp/api/ --build-arg=\"PORT=8080\" --tag api:latest --network host",
+          "rm -rf docker/tmp/api/"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

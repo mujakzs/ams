@@ -1,0 +1,16 @@
+go 1.22
+
+use (
+	./app/api
+	./app/migrations
+	./library/go/constants
+	./library/go/db
+	./library/go/env
+	./library/go/hash
+	./library/go/jwt
+	./library/go/logger
+	./library/go/mapstruct
+	./library/go/models
+	./library/go/paginator
+	./library/go/structs
+)
